@@ -11,7 +11,8 @@ const ChatInput = ({ onSendMessage }) => {
   };
 
   const handleDNISubmit = () => {
-    chatUseCase.userDNI = userMessage;
+    chatUseCase.setDNI(userMessage); // Pasar el valor del DNI al chatUseCase
+    chatUseCase.startChat(); // Iniciar el chat después de establecer el DNI
     setUserMessage('');
   };
 

@@ -34,8 +34,10 @@ function ChatPage() {
   }, [messages]);
 
   useEffect(() => {
-    chatUseCase.startChat();
-  }, []);
+    if (chatUseCase.userDNI) {
+      chatUseCase.startChat();
+    }
+  }, [chatUseCase.userDNI]);
 
   return (
     <div className="container">
