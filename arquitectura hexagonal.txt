@@ -1,0 +1,41 @@
+Estructura de carpetas:
+
+Crea la siguiente estructura de carpetas en la raíz del proyecto:
+markdown
+Copy code
+- src
+  - domains
+    - chat
+      - interfaces
+      - useCases
+  - infrastructure
+    - chat
+      - adapters
+  - presentation
+    - components
+    - pages
+Implementación de dominio:
+
+En la carpeta src/domains/chat/interfaces, crea una interfaz llamada ChatRepository.js que defina los métodos necesarios para interactuar con 
+la API del chatbot.
+
+En la carpeta src/domains/chat/useCases, crea un archivo llamado ChatUseCase.js que contendrá la lógica del chat.
+
+Implementación de adaptadores:
+
+En la carpeta src/infrastructure/chat/adapters, crea un adaptador concreto llamado ChatbotAPI.js que implemente la interfaz ChatRepository.js 
+y se comunique con la API del chatbot.
+Implementación de la capa de presentación:
+
+En la carpeta src/presentation/components, crea los componentes necesarios para la interfaz de chat. Puedes crear componentes como ChatMessage.js, 
+ChatInput.js, etc.
+
+En la carpeta src/presentation/pages, crea una página llamada ChatPage.js que utilice los componentes de chat y la lógica del chat del caso de uso.
+
+Conexión de componentes y lógica:
+
+Utiliza la inyección de dependencias para conectar los componentes de la capa de presentación con la lógica del chat del caso de uso.
+Estilos y diseño:
+
+Utiliza CSS o alguna biblioteca de estilos, como Styled Components, para darle estilo a tus componentes y lograr el aspecto deseado 
+similar a un chat de WhatsApp.
