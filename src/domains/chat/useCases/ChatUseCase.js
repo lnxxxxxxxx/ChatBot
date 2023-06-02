@@ -15,17 +15,18 @@ class ChatUseCase {
     this.startMessage = "Por favor, ingrese su DNI";
   }
 
-  setDNI(dni){
+  setDNI(dni) {
     this.userDNI = dni;
+    this.startChat(); // Inicia automáticamente el chat después de establecer el DNI
   }
 
   startChat() {
-  if (this.userDNI) {
-    this.activeChatbotAPI = this.chatbotAPI;
-  } else {
-    throw new Error('DNI not set. Please set the DNI before starting the chat.');
+    if (this.userDNI) {
+      this.activeChatbotAPI = this.chatbotAPI;
+    } else {
+      throw new Error('DNI not set. Please set the DNI before starting the chat.');
+    }
   }
-}
 
   async sendMessage(userMessage) {
     if (this.activeChatbotAPI === null) {
