@@ -28,7 +28,7 @@ function ChatPage() {
   };
 
   const handleDNISubmit = (dni) => {
-    chatUseCase.setDNI(dni); // Establece el DNI en el chatUseCase para iniciar el chat
+    chatUseCase.setDNI(dni); // Establece el DNI en el chatUseCase para iniciar el chat //
   };
 
   useEffect(() => {
