@@ -1,15 +1,17 @@
 // ChatUseCase.js
 import ChatbotAPI from '../../../infrasctucture/chat/adapters/ChatBotAPI';
-import ChatbotAPIA from '../../../infrasctucture/chat/adapters/ChatBotAPIA';
-import ChatbotAPIS from '../../../infrasctucture/chat/adapters/ChatBotAPIS';
+import ChatbotIA from '../../../infrasctucture/chat/adapters/ChatBotIA';
+import ChatbotConsumo from '../../../infrasctucture/chat/adapters/ChatBotConsumo';
+import ChatbotDeuda from '../../../infrasctucture/chat/adapters/ChatBotDeuda';
 
 
 /// ChatUseCase.js
 class ChatUseCase {
   constructor() {
     this.chatbotAPI = new ChatbotAPI();
-    this.chatbotAPIA = new ChatbotAPIA();
-    this.chatbotAPIS = new ChatbotAPIS();
+    this.chatbotIA = new ChatbotIA();
+    this.chatbotConsumo = new ChatbotConsumo();
+    this.chatbotDeuda = new ChatbotDeuda();
     this.activeChatbotAPI = null;
     this.userDNI = null;
     this.startMessage = "Por favor, ingrese su DNI";
@@ -32,16 +34,20 @@ class ChatUseCase {
     if (this.activeChatbotAPI === null) {
       return this.startMessage;
     }
-    console.log(this.userDNI);
+    
     let response = await this.activeChatbotAPI.sendMessage(userMessage);
 
     if (response.response === 'Conectando con un asesor...') {
-      this.activeChatbotAPI = this.chatbotAPIA;
+      this.activeChatbotAPI = this.chatbotIA;
     }
 
     if (userMessage === '3' && this.userDNI) {
-      response = await this.chatbotAPIS.receivedConsumo(this.userDNI);
+      response = await this.chatbotConsumo.receivedConsumo(this.userDNI);
       console.log(response);
+    }
+
+    if(userMessage === '4' && this.userDNI){
+      response = await this.chatbotDeuda.receivedConsumo(this.userDNI);
     }
 
     

@@ -7,6 +7,7 @@ class Chatbot:
              "Gestiones sobre pagos",
              "Instalaciones/Problemas técnicos",
              "Informacion sobre consumos",
+             "Informacion sobre deuda vigente",
              "Comunicarme con un asesor"
             ]
         if message.lower() == "opciones" or message.lower() == "hola":
@@ -22,7 +23,8 @@ class Chatbot:
             "1": "Para solucionar problemas con el pago, deberá comunicarse más tarde",
             "2": "Para instalaciones o problemas técnicos, debe comunicarse con atención al cliente al 0800-33-333",
             "3": "DNI",
-            "4": "Conectando con un asesor..."
+            "4": "Deuda",
+            "5": "Conectando con un asesor..."
         }
         response = switcher.get(option)
         return response
@@ -40,7 +42,7 @@ def chat():
     data = request.json
     message = data['message']
     
-    if message.lower() in ["1", "2", "3", "4"]:
+    if message.lower() in ["1", "2", "3", "4", "5"]:
         option = message.lower()
         response = chatbot.process_option(option)  # Procesar la opción seleccionada
     else:
