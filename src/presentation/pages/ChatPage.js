@@ -27,17 +27,15 @@ function ChatPage() {
     }
   };
 
+  const handleDNISubmit = (dni) => {
+    chatUseCase.setDNI(dni); // Establece el DNI en el chatUseCase para iniciar el chat //
+  };
+
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
-
-  useEffect(() => {
-    if (chatUseCase.userDNI) {
-      chatUseCase.startChat();
-    }
-  }, [chatUseCase.userDNI]);
 
   return (
     <div className="container">
@@ -46,9 +44,13 @@ function ChatPage() {
           <ChatMessage key={index} isSender={msg.sender === 'user'} message={msg.message} />
         ))}
       </div>
-      <ChatInput onSendMessage={handleSendMessage} />
+      <ChatInput
+        onSendMessage={handleSendMessage}
+        onDNISubmit={handleDNISubmit} // Pasa la función handleDNISubmit al componente ChatInput
+      />
     </div>
   );
+  
 }
 
 export default ChatPage;

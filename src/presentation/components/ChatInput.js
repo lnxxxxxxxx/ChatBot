@@ -1,37 +1,37 @@
-import { useState } from 'react';
+import { useState } from "react";
+
+/*
+No uso el ChatUseCase
 import ChatUseCase from '../../domains/chat/useCases/ChatUseCase';
-
 const chatUseCase = new ChatUseCase();
+*/
 
-const ChatInput = ({ onSendMessage }) => {
-  const [userMessage, setUserMessage] = useState('');
+/*Agrego una props que guarda el valor del DNI*/
+const ChatInput = ({ onSendMessage, onDNISubmit }) => {
+  const [userMessage, setUserMessage] = useState("");
+  // Creo un estado para el DNI
+  const [isDNISubmitted, setIsDNISubmitted] = useState(false);
 
   const handleInputChange = (event) => {
     setUserMessage(event.target.value);
   };
 
-  const handleDNISubmit = () => {
-    chatUseCase.setDNI(userMessage); // Pasar el valor del DNI al chatUseCase
-    chatUseCase.startChat(); // Iniciar el chat después de establecer el DNI
-    setUserMessage('');
-  };
-
-  const handleSend = async () => {
-    try {
-      let response = await chatUseCase.sendMessage(userMessage);
-      onSendMessage(userMessage, response);
-      setUserMessage('');
-    } catch (error) {
-      console.error('Error sending message to chatbot:', error);
+  const handleSend = () => {
+    // Agrego un condicional que verifica si userMessage es distinto de " "
+    if (userMessage.trim() !== "") {
+      onSendMessage(userMessage);
+      setUserMessage("");
     }
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      if (chatUseCase.userDNI) {
+    if (event.key === "Enter") {
+      if (isDNISubmitted) {
         handleSend();
       } else {
-        handleDNISubmit();
+        setIsDNISubmitted(true);
+        onDNISubmit(userMessage); // Llama a la función onDNISubmit con el valor del DNI
+        setUserMessage("");
       }
     }
   };
@@ -40,16 +40,15 @@ const ChatInput = ({ onSendMessage }) => {
     <div className="chat-input">
       <input
         type="text"
-        placeholder="Type your message..."
+        placeholder={isDNISubmitted ? "Type your message..." : "Ingrese su DNI"}
         value={userMessage}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={chatUseCase.userDNI ? handleSend : handleDNISubmit}>
-        Send
-      </button>
+      <button onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
     </div>
   );
 };
 
+/* Linea 48 pregunto al estado isDNISubmitted si es handleSend(linea 19 - 23) sino manda una funcion vacia */
 export default ChatInput;
