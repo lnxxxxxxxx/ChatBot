@@ -37,15 +37,15 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
   };
 
   return (
-    <div className="chat-input">
-      <input
+    <div className="chat-input-container">
+      <input className="chat-input"
         type="text"
         placeholder={isDNISubmitted ? "Type your message..." : "Ingrese su DNI"}
         value={userMessage}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
+      <button className="send-button" onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
     </div>
   );
 };
