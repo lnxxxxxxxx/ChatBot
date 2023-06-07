@@ -15,7 +15,7 @@ class ChatUseCase {
     this.activeChatbotAPI = null;
     this.userDNI = null;
     this.startMessage = "Por favor, ingrese su DNI";
-    this.whenDNI = "DNI Ingresado correctamente. ¿Desea usted continuar?";
+    this.whenDNI = "DNI Ingresado correctamente. ¿Desea continuar?";
     this.msj = "Bienvenido mi nombre es Angelina. ¿En que puedo ayudarle?";
   }
 
