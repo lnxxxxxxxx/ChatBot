@@ -1,8 +1,10 @@
-# 💻 ChatBot 
+# 💻 ChatBot  [![GitHub Repo stars](https://img.shields.io/github/stars/lnxxxxxxxx/ChatBot?style=social)](https://github.com/lnxxxxxxxx/ChatBot/stargazers)
+
 ### ChatBot Full stack Software Hexagonal Architecture - consuming Springboot and Flask Micro-Services
 #### JavaScript,React,Next.js/Java,Springboot,Hibernate,H2/Python,Flask,Tensorflow,IA 
 
-  [![GitHub Repo stars](https://img.shields.io/github/stars/lnxxxxxxxx/ChatBot?style=social)](https://github.com/lnxxxxxxxx/ChatBot/stargazers)
+  
+  ![chatbot](./Chatbot1.png)
   
 ## 📋 Requirements
 - Environment 
