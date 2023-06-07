@@ -39,6 +39,10 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
   const handleTouchEnd = () => {
     if (isDNISubmitted) {
       handleSend();
+    } else {
+      setIsDNISubmitted(true);
+      onDNISubmit(userMessage); // Llama a la función onDNISubmit con el valor del DNI
+      setUserMessage("");
     }
   };
 
