@@ -15,11 +15,21 @@ class ChatUseCase {
     this.activeChatbotAPI = null;
     this.userDNI = null;
     this.startMessage = "Por favor, ingrese su DNI";
+    this.whenDNI = "DNI Ingresado correctamente. ¿Desea usted continuar?";
+    this.msj = "Bienvenido mi nombre es Angelina. ¿En que puedo ayudarle?";
   }
 
   setDNI(dni) {
     this.userDNI = dni;
+    this.enterDNI();
     this.startChat(); // Inicia automáticamente el chat después de establecer el DNI
+  }
+  enterDNI(){
+    return this.whenDNI;
+  }
+  
+  MENSAJE(){
+    return this.msj;
   }
 
   startChat() {
@@ -43,7 +53,6 @@ class ChatUseCase {
 
     if (userMessage === '3' && this.userDNI) {
       response = await this.chatbotConsumo.receivedConsumo(this.userDNI);
-      console.log(response);
     }
 
     if(userMessage === '4' && this.userDNI){

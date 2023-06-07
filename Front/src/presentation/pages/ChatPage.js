@@ -17,18 +17,41 @@ function ChatPage() {
     setMessages((prevMessages) => [...prevMessages, newMessageSent]);
 
     try {
-      const response = await chatUseCase.sendMessage(userMessage);
+      let response = await chatUseCase.sendMessage(userMessage);
 
-      const newMessageReceived = { sender: 'bot', message: response };
+      if (response === 'Conectando con un asesor...') {
+        let response1 = 'Conectando con un asesor....'; //
 
-      setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
-    } catch (error) {
+        const newMessageReceived2 = { sender: 'bot', message: response1 };
+        setMessages((prevMessages) => [...prevMessages, newMessageReceived2]);
+
+        setTimeout(() => {
+          response = chatUseCase.MENSAJE();
+          const newMessageReceived = { sender: 'bot', message: response };
+          setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+        }, 5000); // Intervalo de 5 segundo (5000 milisegundos)
+      } else {
+        const newMessageReceived = { sender: 'bot', message: response };
+        setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+      }
+     } catch (error) {
       console.error('Error sending message to chatbot:', error);
     }
   };
 
   const handleDNISubmit = (dni) => {
-    chatUseCase.setDNI(dni); // Establece el DNI en el chatUseCase para iniciar el chat //
+    chatUseCase.setDNI(dni); // Establece el DNI en el chatUseCase para iniciar el chat
+    const response1 = chatUseCase.userDNI;
+    const newMessageReceived2 = { sender: 'user', message: response1 };
+    setMessages((prevMessages) => [...prevMessages, newMessageReceived2]);
+
+
+    const response = chatUseCase.enterDNI(); // Obtiene el mensaje de respuesta de enterDNI()
+
+    const newMessageReceived = { sender: 'bot', message: response };
+    setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+
+    
   };
 
   useEffect(() => {
