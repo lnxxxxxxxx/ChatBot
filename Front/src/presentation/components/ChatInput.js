@@ -36,6 +36,12 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
     }
   };
 
+  const handleTouchEnd = () => {
+    if (isDNISubmitted) {
+      handleSend();
+    }
+  };
+
   return (
     <div className="chat-input-container">
       <input className="chat-input"
@@ -44,6 +50,7 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
         value={userMessage}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
+        onTouchEnd={handleTouchEnd} // Agrega el evento onTouchEnd para dispositivos móviles
       />
       <button className="send-button" onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
     </div>
