@@ -1,10 +1,5 @@
 import { useState } from "react";
 
-/*
-No uso el ChatUseCase
-import ChatUseCase from '../../domains/chat/useCases/ChatUseCase';
-const chatUseCase = new ChatUseCase();
-*/
 
 /*Agrego una props que guarda el valor del DNI*/
 const ChatInput = ({ onSendMessage, onDNISubmit }) => {
@@ -37,14 +32,13 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
   };
 
   const handleTouchEnd = (event) => {
-    if (event.target.classList.contains("send-button")) {
-      if (isDNISubmitted) {
-        handleSend();
-      } else {
-        setIsDNISubmitted(true);
-        onDNISubmit(userMessage);
-        setUserMessage("");
-      }
+    if (isDNISubmitted) {
+      handleSend();
+    } else {
+      event.preventDefault(); // Previene el envío del formulario en dispositivos móviles
+      setIsDNISubmitted(true);
+      onDNISubmit(userMessage);
+      setUserMessage("");
     }
   };
 
@@ -56,9 +50,9 @@ const ChatInput = ({ onSendMessage, onDNISubmit }) => {
         value={userMessage}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        onTouchEnd={handleTouchEnd} // Agrega el evento onTouchEnd para dispositivos móviles
+        
       />
-      <button className="send-button" onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
+      <button className="send-button" onTouchEnd={handleTouchEnd} onClick={isDNISubmitted ? handleSend : () => {}}>Send</button>
     </div>
   );
 };
