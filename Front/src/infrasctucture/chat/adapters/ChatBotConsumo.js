@@ -8,7 +8,7 @@ export default class ChatbotAPIS extends ChatRepository {
 
   async receivedConsumo(dni) {
     try {
-      const response = await fetch(`http://localhost:8080/chat/${dni}`, {
+      const response = await fetch(`https://chatbotjava-production.up.railway.app/${dni}`, {
         method: 'GET'
       });
 
